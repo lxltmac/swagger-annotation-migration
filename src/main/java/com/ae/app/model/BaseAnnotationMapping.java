@@ -1,9 +1,6 @@
 package com.ae.app.model;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Stack;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -84,6 +81,7 @@ public abstract class BaseAnnotationMapping {
         String[] keyValuePairs = annotationString.split(",");
         for (String keyValue : keyValuePairs) {
             String[] kvArr = keyValue.split("=");
+            kvArr = Arrays.stream(kvArr).map(str -> str.trim()).toArray(String[]::new);
             String key, value;
 
             if (kvArr.length > 1) {
