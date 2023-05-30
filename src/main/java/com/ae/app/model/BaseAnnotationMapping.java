@@ -56,21 +56,24 @@ public abstract class BaseAnnotationMapping {
     }
 
 
-    public AnnotationInfo getSubstitutionInfo(String line, int lineNum) {
-        AnnotationInfo result = new AnnotationInfo();
+    public List<AnnotationInfo> getSubstitutionInfo(String line, int lineNum) {
+        List<AnnotationInfo> result = new ArrayList<>();
         boolean found = false;
-        Pattern pattern = Pattern.compile(String.format("@\\b%s\\b\\((.*)\\)", oldAnnotation));
+        // Use non-greedy quantifier to match the smallest parentheses
+        Pattern pattern = Pattern.compile(String.format("@\\b%s\\b\\((.*?)\\)", oldAnnotation));
         Matcher matcher = pattern.matcher(line);
         while (matcher.find()) {
+            AnnotationInfo info = new AnnotationInfo();
             found = true;
             String oldString = matcher.group();
             String oldParenthesesContent = matcher.group(1);
             Map<String, String> oldAnnotationParameter = getAnnotationParameter(oldParenthesesContent);
             Map<String, String> newAnnotationParameter = mapAnnotationParameter(oldAnnotationParameter);
             String newString = convertMap2String(newAnnotationParameter);
-            result.setLine(lineNum).setOldString(oldString).setNewString(newString)
+            info.setLine(lineNum).setOldString(oldString).setNewString(newString)
                     .setOldAnnotationParameters(oldAnnotationParameter)
                     .setNewAnnotationParameters(newAnnotationParameter);
+            result.add(info);
         }
         if (!found) return null;
         return result;
@@ -78,7 +81,8 @@ public abstract class BaseAnnotationMapping {
 
     private Map<String, String> getAnnotationParameter(String annotationString) {
         Map<String, String> map = new HashMap<>();
-        String[] keyValuePairs = annotationString.split(",");
+        // matches a comma (,) that is not enclosed within quotes
+        String[] keyValuePairs = annotationString.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
         for (String keyValue : keyValuePairs) {
             String[] kvArr = keyValue.split("=");
             kvArr = Arrays.stream(kvArr).map(str -> str.trim()).toArray(String[]::new);

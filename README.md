@@ -18,6 +18,10 @@ You can define your own annotation replace rules in `com.ae.app.mapping` package
 
 **Welcome for contribute**
 
+## Requirements
+- JDK 11
+- Apache Maven 3.8.1
+
 ## How to use
 - `mvn package`
 - `java -jar target/swagger-annotation-migration-1.0-SNAPSHOT.jar {your-project-path-here}`
@@ -33,9 +37,6 @@ You can define your own annotation replace rules in `com.ae.app.mapping` package
 
 @ApiOperation(value = "foo", notes = "bar") → @Operation(summary = "foo", description = "bar")
 
-
----Done---
-Number means changes
 @ApiParam → @Parameter
 
 ## Limitations

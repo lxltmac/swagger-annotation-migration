@@ -12,7 +12,7 @@ public class Api2TagMapping extends BaseAnnotationMapping {
         setOldAnnotation("Api");
         setNewAnnotation("Tag");
         Map<String, String> map = new HashMap<>();
-        map.put("tag", "name");
+        map.put("tags", "name");
         map.put("description", "description");
         setMapping(map);
         setOldImport(Arrays.asList("io.swagger.annotations.*", "io.swagger.annotations.Api"));

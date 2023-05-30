@@ -44,15 +44,18 @@ public class AnnotationSubstitution {
                 String line = fileContent.get(i);
 
                 for (BaseAnnotationMapping mapping : AnnotationSubstitution.mapping) {
-                    AnnotationInfo info = mapping.getSubstitutionInfo(line, i);
-                    if (info == null) {
+                    List<AnnotationInfo> infoList = mapping.getSubstitutionInfo(line, i);
+                    if (infoList == null) {
                         continue;
                     }
+
                     // Replace
-                    line = line.replace(info.getOldString(), info.getNewString());
-                    oldImports.addAll(mapping.getOldImport());
-                    newImports.add(mapping.getNewImport());
-                    hasChanges = true;
+                    for (AnnotationInfo info : infoList) {
+                        line = line.replace(info.getOldString(), info.getNewString());
+                        oldImports.addAll(mapping.getOldImport());
+                        newImports.add(mapping.getNewImport());
+                        hasChanges = true;
+                    }
                 }
                 newLines.add(line);
             }
@@ -95,7 +98,7 @@ public class AnnotationSubstitution {
 
             // Write back
             try {
-                BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+                BufferedWriter writer = new BufferedWriter(new FileWriter(file, StandardCharsets.UTF_8));
                 for (String line : newLines) {
                     writer.write(line);
                     writer.newLine();
