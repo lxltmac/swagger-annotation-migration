@@ -20,6 +20,14 @@ public class Migration {
 
     private void setAllJavaFiles(String pathname) {
         File folder = new File(pathname);
+        if (folder.isFile()) {
+            String[] fileSplit = folder.getName().split("\\.");
+            if (fileSplit.length > 1 && fileSplit[1].equals("java")) {
+                allFiles.add(folder);
+            }
+            return;
+        }
+
         File[] listFiles = folder.listFiles();
 
         for (File file : listFiles) {
@@ -34,8 +42,8 @@ public class Migration {
         }
     }
 
-    private void processFile(File javaFile) {
-        System.out.println(String.format("Processing %s", javaFile.getAbsolutePath()));
-
+    private void processFile(File file) {
+        AnnotationSubstitution as = new AnnotationSubstitution(file);
+        as.start();
     }
 }
