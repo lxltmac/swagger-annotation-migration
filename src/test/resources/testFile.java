@@ -23,7 +23,7 @@ import java.util.regex.Pattern;
 public class LoginController {
 
     @PostMapping("/login")
-    @ApiOperation(value = "login", notes = "login notes")
+    @ApiOperation(value = "login", notes = "login notes, test comma and ( parentheses) ")
     public Result login(@Validated LoginUser loginUser, @ApiParam(value = "account") String account, @ApiParam("code") String code) {
     }
 

@@ -60,7 +60,9 @@ public abstract class BaseAnnotationMapping {
         List<AnnotationInfo> result = new ArrayList<>();
         boolean found = false;
         // Use non-greedy quantifier to match the smallest parentheses
-        Pattern pattern = Pattern.compile(String.format("@\\b%s\\b\\((.*?)\\)", oldAnnotation));
+        // regex: @\bANNNOTATION\b\((.*)\) then we need to make sure the parentheses are not in ""
+        // so we add (?=(?:[^"]*"[^"]*")*[^"]*$) for each parentheses matched
+        Pattern pattern = Pattern.compile(String.format("@\\b%s\\b\\((?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)(.*?)\\)(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", oldAnnotation));
         Matcher matcher = pattern.matcher(line);
         while (matcher.find()) {
             AnnotationInfo info = new AnnotationInfo();
