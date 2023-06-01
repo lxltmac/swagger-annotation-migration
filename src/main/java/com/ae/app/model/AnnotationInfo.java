@@ -1,8 +1,14 @@
 package com.ae.app.model;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class AnnotationInfo {
+    public AnnotationInfo() {
+        oldAnnotationParameters = new HashMap<>();
+        newAnnotationParameters = new HashMap<>();
+    }
+
     private int line;
     private String oldString;
     private String newString;

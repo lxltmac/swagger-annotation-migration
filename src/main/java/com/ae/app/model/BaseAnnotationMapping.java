@@ -77,6 +77,18 @@ public abstract class BaseAnnotationMapping {
                     .setNewAnnotationParameters(newAnnotationParameter);
             result.add(info);
         }
+        // Annotation may not have parentheses
+        Pattern patternNoParentheses = Pattern.compile(String.format("@\\b%s\\b(?!\\()", oldAnnotation));
+        Matcher matcherNoParentheses = patternNoParentheses.matcher(line);
+        while (matcherNoParentheses.find()) {
+            AnnotationInfo info = new AnnotationInfo();
+            found = true;
+            String oldString = matcherNoParentheses.group();
+            String newString = "@" + newAnnotation;
+            info.setLine(lineNum).setOldString(oldString).setNewString(newString);
+            result.add(info);
+        }
+        // No matches found
         if (!found) return null;
         return result;
     }

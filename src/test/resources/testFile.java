@@ -21,6 +21,8 @@ import java.util.regex.Pattern;
 @RestController
 @RequestMapping("/user")
 public class LoginController {
+    @ApiModel
+    private Entity Model;
 
     @PostMapping("/login")
     @ApiOperation(value = "login", notes = "login notes, test comma and ( parentheses) ")
