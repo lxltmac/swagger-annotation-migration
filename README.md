@@ -19,8 +19,8 @@
 ## 如何使用
 - `mvn package`
 - `java -jar target/swagger-annotation-migration-1.0-SNAPSHOT.jar {your-project-path-here}`
-- You may need to reformat your code after migration.
-  Using Spotless maven plugin to automatically format your code [HERE](https://github.com/diffplug/spotless/tree/main/plugin-maven)
+- 你可以使用Spotless插件自动格式化你的代码
+- 使用Spotless插件自动格式化你的代码 [HERE](https://github.com/diffplug/spotless/tree/main/plugin-maven)
 
 ## 支持的注解替换
 @Api → @Tag
