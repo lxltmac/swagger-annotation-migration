@@ -1,4 +1,4 @@
-package com.ae.app.model;
+package com.swagger.generate.model;
 
 import java.util.HashMap;
 import java.util.Map;

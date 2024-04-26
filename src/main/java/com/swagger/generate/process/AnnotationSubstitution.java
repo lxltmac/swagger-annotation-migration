@@ -1,8 +1,8 @@
-package com.ae.app.process;
+package com.swagger.generate.process;
 
-import com.ae.app.mapping.*;
-import com.ae.app.model.AnnotationInfo;
-import com.ae.app.model.BaseAnnotationMapping;
+import com.swagger.generate.model.AnnotationInfo;
+import com.swagger.generate.model.BaseAnnotationMapping;
+import com.swagger.generate.mapping.*;
 
 import java.io.BufferedWriter;
 import java.io.File;

@@ -1,4 +1,6 @@
-package com.ae.app.model;
+package com.swagger.generate.model;
+
+import cn.hutool.core.util.StrUtil;
 
 import java.util.*;
 import java.util.regex.Matcher;
@@ -105,6 +107,10 @@ public abstract class BaseAnnotationMapping {
             if (kvArr.length > 1) {
                 key = kvArr[0];
                 value = kvArr[1];
+                if (value.matches(".*\\{.*\\}.*")) {
+                    // 存在{}，进行处理
+                    value = value.replaceAll("^.*\\{(.*)\\}.*$", "$1"); // 提取花括号内的内容
+                }
             } else {
                 // Default key is "value"
                 key = "value";
@@ -133,6 +139,10 @@ public abstract class BaseAnnotationMapping {
         StringBuilder sb = new StringBuilder();
         sb.append("@").append(newAnnotation).append("(");
         for (Map.Entry<String, String> entry : annotationParameter.entrySet()) {
+            if(StrUtil.isEmpty(entry.getKey())){
+                System.out.println(entry + "为空");
+                continue;
+            }
             sb.append(entry.getKey()).append("=").append(entry.getValue()).append(",");
         }
         if (annotationParameter.size() > 0) {

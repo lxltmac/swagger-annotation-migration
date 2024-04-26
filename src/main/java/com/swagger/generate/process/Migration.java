@@ -1,4 +1,4 @@
-package com.ae.app.process;
+package com.swagger.generate.process;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -43,6 +43,9 @@ public class Migration {
     }
 
     private void processFile(File file) {
+        //增加swagger3注解
+        Swagger3AnnotationAdder.addSwaggerAnnotationsToFile(file);
+        //替换 swagger2注解
         AnnotationSubstitution as = new AnnotationSubstitution(file);
         as.start();
     }

@@ -1,4 +1,4 @@
-package com.ae.app;
+package com.swagger.generate;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

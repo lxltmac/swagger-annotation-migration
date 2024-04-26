@@ -1,6 +1,6 @@
-package com.ae.app.mapping;
+package com.swagger.generate.mapping;
 
-import com.ae.app.model.BaseAnnotationMapping;
+import com.swagger.generate.model.BaseAnnotationMapping;
 
 import java.util.Arrays;
 import java.util.HashMap;

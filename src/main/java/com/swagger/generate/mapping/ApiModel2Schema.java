@@ -1,6 +1,6 @@
-package com.ae.app.mapping;
+package com.swagger.generate.mapping;
 
-import com.ae.app.model.BaseAnnotationMapping;
+import com.swagger.generate.model.BaseAnnotationMapping;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -13,6 +13,7 @@ public class ApiModel2Schema extends BaseAnnotationMapping {
         Map<String, String> map = new HashMap<>();
         map.put("value", "name");
         map.put("description", "description");
+        map.put("dataType", "type");
         setMapping(map);
         setOldImport(Arrays.asList("io.swagger.annotations.*", "io.swagger.annotations.ApiModel"));
         setNewImport("io.swagger.v3.oas.annotations.media.Schema");
