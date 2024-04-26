@@ -37,4 +37,4 @@
 会优先读取`@Schema`注解，如果没有则读取`@ApiModel`注解，如果没有会读取/** **/中的内容生成 swagger3 的注解
 
 ## 声明
-本项目是根据swagger-annotation-migration改造的，仓库地址：https://github.com/Alex-T-1024/swagger-annotation-migration
+本项目是根据swagger-annotation-migration改造的，原仓库地址：https://github.com/Alex-T-1024/swagger-annotation-migration
